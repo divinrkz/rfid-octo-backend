@@ -36,6 +36,15 @@ class Api::V1::CardsController < ApplicationController
   end
 
 
+  def destroy
+    card = Card.find_by(id: params[:id])
+    if card
+      Card.delete(card)
+      render json: {success: true, message: 'Card Deleted Successfully', status: 200}, status: :ok
+    else
+      render json: {success: false, message: 'Card Not found', status: 404}, status: :not_found
+    end
+  end
 
   private def validate
     params.require(:card).permit([:uuid, :balance])
