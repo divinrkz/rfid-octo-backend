@@ -6,7 +6,6 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def show
-    puts params[:id]
     card = Card.find_by(id: params[:id])
     if card
       render json: card, status: :ok
@@ -24,6 +23,16 @@ class Api::V1::CardsController < ApplicationController
       render json: {success: false, message: 'Card Not saved', status: 500}, status: :internal_server_error
     end
   end
+
+  def update
+    card =  Card.new(UUID: validate[:UUID])
+    if card.save
+      render json: card, status: 201
+    else
+      render json: {success: false, message: 'Card Not saved', status: 500}, status: :internal_server_error
+    end
+  end
+
 
 
   private def validate
