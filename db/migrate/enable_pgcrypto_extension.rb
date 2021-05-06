@@ -1,4 +1,4 @@
-class EnablePgcryptoExtension < ActiveRecord::Migration
+class EnableExtensions  < ActiveRecord::Migration
   def change
     enable_extension 'uuid-ossp'
     enable_extension 'pgcrypto'
