@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uuid: MyString
+  balance: 9.99
+  enabled: false
+
+two:
+  uuid: MyString
+  balance: 9.99
+  enabled: false
