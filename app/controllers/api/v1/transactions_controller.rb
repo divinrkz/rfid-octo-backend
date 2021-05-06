@@ -33,24 +33,24 @@ class Api::V1::TransactionsController < ApplicationController
     if transaction
       transaction.update_attribute(:uuid, validate[:uuid])
       transaction.update_attribute(:balance, validate[:balance])
-      render json: card, status: :ok
+      render json: transaction, status: :ok
     else
-      render json: {success: false, message: 'Card Not found', status: 404}, status: :not_found
+      render json: {success: false, message: 'Transaction Not found', status: 404}, status: :not_found
     end
   end
 
 
   def destroy
-    card = Card.find_by(id: params[:id])
-    if card
-      Card.delete(card)
-      render json: {success: true, message: 'Card Deleted Successfully', status: 200}, status: :ok
+    transaction = Transaction.find_by(id: params[:id])
+    if transaction
+      Transaction.delete(transaction)
+      render json: {success: true, message: 'Transaction Deleted Successfully', status: 200}, status: :ok
     else
-      render json: {success: false, message: 'Card Not found', status: 404}, status: :not_found
+      render json: {success: false, message: 'Transaction Not found', status: 404}, status: :not_found
     end
   end
 
   private def validate
-    params.require(:card).permit([:uuid, :balance])
+    params.require(:transaction).permit([:card, :fare])
   end
 end
