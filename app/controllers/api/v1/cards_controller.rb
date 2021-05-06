@@ -16,7 +16,7 @@ class Api::V1::CardsController < ApplicationController
 
 
   def create
-    card =  Card.new(UUID: validate[:UUID])
+    card =  Card.new(uuid: validate[:uuid], balance: validate[:balance])
     if card.save
       render json: card, status: 201
     else
@@ -25,17 +25,19 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def update
-    card =  Card.new(UUID: validate[:UUID])
-    if card.save
-      render json: card, status: 201
+    card = Card.find_by(id: params[:id])
+    if card
+      card.update_attribute(:uuid, validate[:uuid])
+      card.update_attribute(:balance, validate[:balance])
+      render json: card, status: :ok
     else
-      render json: {success: false, message: 'Card Not saved', status: 500}, status: :internal_server_error
+      render json: {success: false, message: 'Card Not found', status: 404}, status: :not_found
     end
   end
 
 
 
   private def validate
-    params.require(:rfid_card).permit([:UUID])
+    params.require(:card).permit([:uuid, :balance])
   end
 end
