@@ -21,9 +21,8 @@ class Api::V1::TransactionsController < ApplicationController
     transport_fare = validate[:fare]
 
     unless card
-      card =  Card.new(uuid: validate[:card], balance: 500)
+      card =  Card.new(uuid: validate[:card], balance: validate[:current_balance])
     end
-
 
     transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
 

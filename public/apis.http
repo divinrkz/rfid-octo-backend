@@ -45,8 +45,10 @@ POST http://localhost:3000/api/v1/transactions
 Content-Type: application/json
 
 {
-  "card": "78438394893443",
-  "fare": 1000
+  "card": "017a0858-21d9-4b70-8ba3-314ddb362385",
+  "fare": 500,
+  "fare": 1000,
+  "fare": 1000,
 }
 
 
