@@ -27,7 +27,7 @@ class Api::V1::TransactionsController < ApplicationController
 
     transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
 
-    card[:balance] = card[:balance]
+    card[:balance] = validate[:current_balance]
     card.save
 
     if transaction.save && card.save
@@ -36,7 +36,6 @@ class Api::V1::TransactionsController < ApplicationController
       render json: {success: false, message: 'Transaction Not saved', status: 500}, status: :internal_server_error
     end
   end
-
 
 
 
