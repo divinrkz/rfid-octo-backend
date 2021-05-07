@@ -15,20 +15,21 @@ class Api::V1::TransactionsController < ApplicationController
     end
   end
 
-
   def create
     card = Card.find_by(uuid: params[:card])
     transport_fare = validate[:fare]
 
     unless card
-      card =  Card.new(uuid: validate[:card], balance: validate[:initial_balance], enabled: true).save
-      card.save
+      return  render json: { success: false, message: 'Card Not found', status: 404 }, status: :not_found
     end
 
+    if card[:balance] < transport_fare
+      return render json: { success: false, message: 'Insufficient amount on Card! Please recharge', status: 400 }, status: :bad_request
+    end
 
-    transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
+    transaction =  Transaction.new(card: card, fare: transport_fare)
 
-    card[:balance] = validate[:current_balance]
+    card[:balance] = (card[:balance] - transport_fare)
     card.save
 
     if transaction.save && card.save
@@ -37,7 +38,6 @@ class Api::V1::TransactionsController < ApplicationController
       render json: {success: false, message: 'Transaction Not saved', status: 500}, status: :internal_server_error
     end
   end
-
 
 
 
