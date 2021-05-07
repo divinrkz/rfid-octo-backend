@@ -21,7 +21,7 @@ class Api::V1::TransactionsController < ApplicationController
     transport_fare = validate[:fare]
 
     unless card
-      return  render json: { success: false, message: 'Card Not found', status: 404 }, status: :not_found
+      card =  Card.new(uuid: validate[:card], balance: 500)
     end
 
     if card[:balance] < transport_fare
