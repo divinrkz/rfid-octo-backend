@@ -25,10 +25,10 @@ class Api::V1::CardsController < ApplicationController
   end
 
 
-  def update
+  def update_balance
     card = Card.find_by(id: params[:id])
     if card
-      card.update_attribute(:balance, validate_put[:balance])
+      card.update_attribute(:balance, (card[:balance] + validate_put[:balance]))
       render json: card, status: :ok
     else
       render json: {success: false, message: 'Card Not found', status: 404}, status: :not_found

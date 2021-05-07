@@ -40,6 +40,7 @@ class Api::V1::TransactionsController < ApplicationController
   end
 
 
+
   def destroy
     transaction = Transaction.find_by(id: params[:id])
     if transaction

@@ -1,8 +1,14 @@
 GET http://localhost:3000/api/v1/cards
 
 
+
 ###
-GET http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937
+GET http://localhost:3000/api/v1/cards/employees
+
+
+
+###
+GET http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937/employees
 
 
 ###
@@ -20,5 +26,10 @@ PUT http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937
 Content-Type: application/json
 
 {
-  "balance": 5000
+  "balance": 1000
 }
+
+
+###
+DELETE http://localhost:3000/api/v1/cards/a22d1466-3142-43f9-9fff-b4ec0ef77c22
+
