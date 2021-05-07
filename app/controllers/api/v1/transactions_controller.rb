@@ -22,9 +22,9 @@ class Api::V1::TransactionsController < ApplicationController
 
     unless card
       card =  Card.new(uuid: validate[:card], balance: validate[:initial_balance], enabled: true)
+      card = card.save
     end
 
-    puts card
 
     transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
 
