@@ -24,10 +24,9 @@ class Api::V1::CardsController < ApplicationController
     end
   end
 
-  def update
+  def update_balance
     card = Card.find_by(id: params[:id])
     if card
-      card.update_attribute(:uuid, validate[:uuid])
       card.update_attribute(:balance, validate[:balance])
       render json: card, status: :ok
     else
