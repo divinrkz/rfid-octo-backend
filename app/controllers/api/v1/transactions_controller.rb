@@ -19,8 +19,11 @@ class Api::V1::TransactionsController < ApplicationController
     card = Card.find_by(uuid: params[:card])
     transport_fare = validate[:fare]
 
+    puts card
+
     unless card
       card = new Card(uuid: params[:card], balance: validate[:initial_balance])
+      puts card
       card.save
     end
 
