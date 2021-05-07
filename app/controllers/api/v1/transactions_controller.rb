@@ -5,9 +5,10 @@ class Api::V1::TransactionsController < ApplicationController
     render json: transactions, status: :ok
   end
 
+
   def show
     transaction = Transaction.find_by(id: params[:id])
-    if card
+    if transaction
       render json: transaction, status: :ok
     else
       render json: {success: false, message: 'Transaction Not found', status: 404}, status: :not_found

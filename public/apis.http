@@ -1,9 +1,9 @@
-GET http://localhost:3000/api/v1/cards
+// Cards
 
+GET http://localhost:3000/api/v1/cards
 
 ###
 GET http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937
-
 
 ###
 POST http://localhost:3000/api/v1/cards
@@ -14,7 +14,6 @@ Content-Type: application/json
   "balance": 0
 }
 
-
 ###
 PUT http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937/update/balance
 Content-Type: application/json
@@ -23,6 +22,36 @@ Content-Type: application/json
   "balance": 1000
 }
 
+###
+DELETE http://localhost:3000/api/v1/cards/a22d1466-3142-43f9-9fff-b4ec0ef77c22
+
+
+
+
+// Transactions
+
+###
+GET http://localhost:3000/api/v1/transactions
+
+###
+GET http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937
+
+###
+POST http://localhost:3000/api/v1/cards
+Content-Type: application/json
+
+{
+  "uuid": "78438394893443",
+  "balance": 0
+}
+
+###
+PUT http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937/update/balance
+Content-Type: application/json
+
+{
+  "balance": 1000
+}
 
 ###
 DELETE http://localhost:3000/api/v1/cards/a22d1466-3142-43f9-9fff-b4ec0ef77c22
