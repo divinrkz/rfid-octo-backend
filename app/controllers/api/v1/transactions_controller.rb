@@ -22,19 +22,29 @@ class Api::V1::TransactionsController < ApplicationController
 
     unless card
       card =  Card.new(uuid: validate[:card], balance: validate[:initial_balance], enabled: true)
-      card = card.save
+      saved = card.save
+
+      transaction =  Transaction.new(card: saved, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
+
+      card[:balance] = validate[:current_balance]
+      card.save
+
+      if transaction.save && card.save
+        render json: transaction, status: 201
+      else
+        render json: {success: false, message: 'Transaction Not saved', status: 500}, status: :internal_server_error
     end
 
+    if card
+      transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
 
-    transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
-
-    card[:balance] = validate[:current_balance]
-    card.save
-
-    if transaction.save && card.save
-      render json: transaction, status: 201
-    else
+      card[:balance] = validate[:current_balance]
+      card.save
+      if transaction.save && card.save
+        render json: transaction, status: 201
+      else
       render json: {success: false, message: 'Transaction Not saved', status: 500}, status: :internal_server_error
+      end
     end
   end
 

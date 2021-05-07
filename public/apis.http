@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/api/v1/cards/336c26fa-33c3-4902-bebb-e1115f7c7452
+DELETE http://localhost:3000/api/v1/cards/a41b2205-6a6d-4abb-b677-e00c7fe1166c
 
 
 
@@ -45,7 +45,7 @@ POST http://localhost:3000/api/v1/transactions
 Content-Type: application/json
 
 {
-  "card": "017a0858-21d9-4b70-8ba3-314ddb362385",
+  "card": "017a0858-21d9-4b70-8ba3-314ddb3623851",
   "fare": 500,
   "initial_balance": 2000,
   "current_balance": 1000
