@@ -45,6 +45,7 @@ class Api::V1::CardsController < ApplicationController
     end
   end
 
+
   private def validate_post
     params.require(:card).permit([:uuid, :balance])
   end
