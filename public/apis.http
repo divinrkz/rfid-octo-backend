@@ -41,8 +41,8 @@ POST http://localhost:3000/api/v1/cards
 Content-Type: application/json
 
 {
-  "uuid": "78438394893443",
-  "balance": 0
+  "card": "78438394893443",
+  "fare": 0
 }
 
 ###

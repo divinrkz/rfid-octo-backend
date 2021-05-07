@@ -18,7 +18,20 @@ class Api::V1::TransactionsController < ApplicationController
 
 
   def create
-    transaction =  Transaction.new(uuid: validate[:uuid], balance: validate[:balance])
+
+
+    card = Card.find_by(uuid: params[:card])
+    transport_fare = validate[:fare]
+
+    unless card
+      render json: { success: false, message: 'Card Not found', status: 404 }, status: :not_found
+    end
+
+    if card[:balance] < validate[:fare]
+    transaction =  Transaction.new(card: card, fare: validate[:fare])
+
+    card[:balance] = (card[:balance] - transaction[:fare])
+    card.save
     if transaction.save
       render json: transaction, status: 201
     else
