@@ -16,7 +16,7 @@ class Api::V1::CardsController < ApplicationController
 
 
   def create
-    card =  Card.new(uuid: validate[:uuid], balance: validate[:balance])
+    card =  Card.new(uuid: validate_post[:uuid], balance: validate_post[:balance])
     if card.save
       render json: card, status: 201
     else
@@ -24,10 +24,10 @@ class Api::V1::CardsController < ApplicationController
     end
   end
 
-  def update_balance
+  def update
     card = Card.find_by(id: params[:id])
     if card
-      card.update_attribute(:balance, validate[:balance])
+      card.update_attribute(:balance, validate_put[:balance])
       render json: card, status: :ok
     else
       render json: {success: false, message: 'Card Not found', status: 404}, status: :not_found
@@ -45,7 +45,11 @@ class Api::V1::CardsController < ApplicationController
     end
   end
 
-  private def validate
+  private def validate_post
     params.require(:card).permit([:uuid, :balance])
+  end
+
+  private def validate_put
+    params.require(:card).permit([:balance])
   end
 end
