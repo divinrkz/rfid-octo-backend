@@ -24,13 +24,9 @@ class Api::V1::TransactionsController < ApplicationController
       card.save
     end
 
-    if card[:balance] < transport_fare
-      return render json: { success: false, message: 'Insufficient amount on Card! Please recharge', status: 400 }, status: :bad_request
-    end
-
     transaction =  Transaction.new(card: card, fare: transport_fare)
 
-    card[:balance] = (card[:balance] - transport_fare)
+    card[:balance] = validate[:current_balance]
     card.save
 
     if transaction.save && card.save
