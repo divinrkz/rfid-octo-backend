@@ -24,11 +24,8 @@ class Api::V1::TransactionsController < ApplicationController
       card =  Card.new(uuid: validate[:card], balance: 500)
     end
 
-    if card[:balance] < transport_fare
-      return render json: { success: false, message: 'Insufficient amount on Card! Please recharge', status: 400 }, status: :bad_request
-    end
 
-    transaction =  Transaction.new(card: card, fare: transport_fare)
+    transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
 
     card[:balance] = card[:balance]
     card.save
@@ -56,6 +53,6 @@ class Api::V1::TransactionsController < ApplicationController
   end
 
   private def validate
-    params.require(:transaction).permit([:card, :fare])
+    params.require(:transaction).permit([:card, :fare, :initial_balance, :current_balance])
   end
 end
