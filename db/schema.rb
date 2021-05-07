@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_030506) do
+ActiveRecord::Schema.define(version: 2021_05_07_185531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -19,20 +19,19 @@ ActiveRecord::Schema.define(version: 2021_05_07_030506) do
 
   create_table "cards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "uuid"
-    t.decimal "balance", default: "0.0"
-    t.boolean "enabled", default: true
+    t.decimal "balance"
+    t.boolean "enabled"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "card"
-    t.decimal "fare"
+    t.string "card"
+    t.decimal "initial_balance"
+    t.boolean "current_balance"
+    t.boolean "fare"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "card_id", null: false
-    t.index ["card_id"], name: "index_transactions_on_card_id"
   end
 
-  add_foreign_key "transactions", "cards"
 end
