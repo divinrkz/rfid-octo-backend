@@ -27,10 +27,12 @@ class Api::V1::TransactionsController < ApplicationController
       render json: { success: false, message: 'Card Not found', status: 404 }, status: :not_found
     end
 
-    if card[:balance] < validate[:fare]
-    transaction =  Transaction.new(card: card, fare: validate[:fare])
+    if card[:balance] < transport_fare
+      render json: { success: false, message: 'Insufficient amount on Card! Please recharge', status: 400 }, status: :bad_request
+    end
+    transaction =  Transaction.new(card: card, fare: transport_fare)
 
-    card[:balance] = (card[:balance] - transaction[:fare])
+    card[:balance] = (card[:balance] - transport_fare)
     card.save
     if transaction.save
       render json: transaction, status: 201
