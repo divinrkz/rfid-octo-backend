@@ -33,6 +33,7 @@ class Api::V1::TransactionsController < ApplicationController
         render json: transaction, status: 201
       else
         render json: {success: false, message: 'Transaction Not saved', status: 500}, status: :internal_server_error
+      end
     end
 
     if card
