@@ -30,7 +30,7 @@ class Api::V1::TransactionsController < ApplicationController
 
     transaction =  Transaction.new(card: card, fare: transport_fare)
 
-    card[:balance] = (card[:balance] - transport_fare)
+    card[:balance] = card[:balance]
     card.save
 
     if transaction.save && card.save
