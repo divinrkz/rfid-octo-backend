@@ -19,7 +19,7 @@ PUT http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937/upda
 Content-Type: application/json
 
 {
-  "balance": 1000
+  "balance": 10000
 }
 
 ###
@@ -34,24 +34,17 @@ DELETE http://localhost:3000/api/v1/cards/a22d1466-3142-43f9-9fff-b4ec0ef77c22
 GET http://localhost:3000/api/v1/transactions
 
 ###
-GET http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937
+GET http://localhost:3000/api/v1/transactions/06c7b0cb-2a0d-4bfa-844f-0b438ee08937
 
 ###
-POST http://localhost:3000/api/v1/cards
+POST http://localhost:3000/api/v1/transactions
 Content-Type: application/json
 
 {
   "card": "78438394893443",
-  "fare": 0
+  "fare": 1000
 }
 
-###
-PUT http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937/update/balance
-Content-Type: application/json
-
-{
-  "balance": 1000
-}
 
 ###
 DELETE http://localhost:3000/api/v1/cards/a22d1466-3142-43f9-9fff-b4ec0ef77c22

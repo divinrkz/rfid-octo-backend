@@ -17,8 +17,6 @@ class Api::V1::TransactionsController < ApplicationController
 
 
   def create
-
-
     card = Card.find_by(uuid: params[:card])
     transport_fare = validate[:fare]
 
@@ -29,6 +27,7 @@ class Api::V1::TransactionsController < ApplicationController
     if card[:balance] < transport_fare
       return render json: { success: false, message: 'Insufficient amount on Card! Please recharge', status: 400 }, status: :bad_request
     end
+
     transaction =  Transaction.new(card: card, fare: transport_fare)
 
     card[:balance] = (card[:balance] - transport_fare)
@@ -43,17 +42,6 @@ class Api::V1::TransactionsController < ApplicationController
 
 
 
-
-  def update
-    transaction = Transaction.find_by(id: params[:id])
-    if transaction
-      transaction.update_attribute(:uuid, validate[:uuid])
-      transaction.update_attribute(:balance, validate[:balance])
-      render json: transaction, status: :ok
-    else
-      render json: {success: false, message: 'Transaction Not found', status: 404}, status: :not_found
-    end
-  end
 
 
 
