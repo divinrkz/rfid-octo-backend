@@ -16,7 +16,7 @@ class Api::V1::CardsController < ApplicationController
 
 
   def create
-    card =  Card.new(uuid: validate_post[:uuid], balance: validate_post[:balance])
+    card =  Card.new(uuid: validate_post[:uuid], balance: validate_post[:balance], enabled: true)
     if card.save
       render json: card, status: 201
     else
