@@ -1,14 +1,8 @@
 GET http://localhost:3000/api/v1/cards
 
 
-
 ###
-GET http://localhost:3000/api/v1/cards/employees
-
-
-
-###
-GET http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937/employees
+GET http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937
 
 
 ###
@@ -22,7 +16,7 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937
+PUT http://localhost:3000/api/v1/cards/06c7b0cb-2a0d-4bfa-844f-0b438ee08937/update/balance
 Content-Type: application/json
 
 {
