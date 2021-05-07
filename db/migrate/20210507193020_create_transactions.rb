@@ -1,10 +1,10 @@
 class CreateTransactions < ActiveRecord::Migration[6.1]
   def change
     create_table :transactions, id: :uuid do |t|
-      t.string :card
+      t.uuid :card
+      t.decimal :fare
       t.decimal :initial_balance
-      t.boolean :current_balance
-      t.boolean :fare
+      t.decimal :new_balance
 
       t.timestamps
     end
