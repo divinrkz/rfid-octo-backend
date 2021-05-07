@@ -28,11 +28,9 @@ class Api::V1::TransactionsController < ApplicationController
       end
     end
 
-    if card
-      transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
-    else
-      transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
-    end
+
+    transaction =  Transaction.new(card: card, fare: transport_fare, initial_balance: validate[:initial_balance], current_balance: validate[:current_balance])
+
     card[:balance] = validate[:current_balance]
     card.save
 
