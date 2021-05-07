@@ -24,6 +24,7 @@ class Api::V1::CardsController < ApplicationController
     end
   end
 
+
   def update
     card = Card.find_by(id: params[:id])
     if card
