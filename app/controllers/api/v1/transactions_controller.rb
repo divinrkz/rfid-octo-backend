@@ -20,8 +20,12 @@ class Api::V1::TransactionsController < ApplicationController
     transport_fare = validate[:fare]
 
     unless card
-      saved = new Card(uuid: params[:card], balance: validate[:initial_balance])
-      saved.save
+      card =  Card.new(uuid: validate[:card], balance: validate[:initial_balance], enabled: true)
+      if card.save
+        render json: card, status: 201
+      else
+        render json: {success: false, message: 'Card Not saved', status: 500}, status: :internal_server_error
+      end
     end
 
     if card
