@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="rfid_transactions_db@localhost" uuid="427c0638-3c82-4ad5-b900-702e08d68053">
+    <data-source source="LOCAL" name="rfid_transactions_db@localhost" uuid="4f4106ef-1bc9-439c-b8df-e2cfd32d11f2">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
