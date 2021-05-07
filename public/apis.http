@@ -1,1 +1,8 @@
-GET http:
+GET http://localhost:3000/api/v1/cards
+
+
+###
+GET http://localhost:3000/api/v1/cards/1
+
+
+###
