@@ -4,7 +4,7 @@ class CreateTransactions < ActiveRecord::Migration[6.1]
       t.uuid :card
       t.decimal :fare
       t.decimal :initial_balance
-      t.decimal :new_balance
+      t.decimal :current_balance
 
       t.timestamps
     end
